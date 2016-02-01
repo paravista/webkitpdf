@@ -1,0 +1,80 @@
+{namespace pv=Paravista\Openjobs\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<div class="openjobs-single">
+	
+        <h1>AUTOS LASSEN IHR HERZ HÖHER SCHLAGEN!</h1>
+
+		<div class="job-intro-text">
+			<p>Das geht uns genauso! In der ASAP Gruppe haben sich Menschen gefunden, die eine entscheidende Gemeinsamkeit haben: Leidenschaft für das Automobil. Als Entwicklungspartner der Automobilindustrie mit rund 1000 Mitarbeitern an neun Standorten arbeiten wir täglich an der automobilen Zukunft. Mit einem Job bei ASAP sind Sie mehr als ein kleines Rädchen im Getriebe – Sie können und sollen wirklich etwas bewegen. Interesse geweckt? Dann möchten wir Sie mit unserer Unternehmenskultur und den Leistungen unseres ASAP Benefit System wirklich begeistern. Denn bei uns dreht sich zwar alles um Autos, aber vorher kommt der Mensch. Steigen Sie ein und entwickeln Sie sich mit uns dahin, wo Sie hinwollen!
+			<br/><br/>
+				<f:if condition="{job.location -> f:count()} > 1">
+					<f:then>
+						Starten Sie durch an unseren Standorten
+						<f:for each="{job.location}" as="location" iteration="iterator">
+							<f:if condition="{iterator.isFirst}">
+								<f:then>
+									{location.city}
+								</f:then>
+								<f:else>
+									<f:if condition="{iterator.isLast}">
+										<f:then>
+											oder {location.city}!
+										</f:then>
+										<f:else>
+											, {location.city}
+										</f:else>
+									</f:if>
+								</f:else>
+							</f:if>
+						</f:for>
+					</f:then>
+					<f:else>
+						Starten Sie durch an unserem Standort
+						<f:for each="{job.location}" as="location">
+							{location.city}!
+						</f:for>
+					</f:else>
+				</f:if>
+			</p>
+		</div>
+
+        <h2>{job.title} <span><f:translate key='tx_openjobs_domain_model_job.sex_prefix' /></span></h2>
+
+		<div class="job-reference-code"><f:translate key="tx_openjobs_domain_model_job.reference" /> {job.reference}</div>
+
+		<div class="job-description"><f:format.html parseFuncTSPath="">{job.description}</f:format.html></div>
+
+		<div class="job-closing-text">
+			<h3>Puls beschleunigt? Jetzt bewerben!</h3>
+			<p>
+                Wir freuen uns auf Ihre vollständigen Bewerbungsunterlagen. Bitte senden Sie diese unter Angabe
+                eines möglichen Starttermins
+                <pv:contains object="{job.education}" keys="{0:1,1:2}">
+                sowie Ihrer Gehaltsvorstellungen
+                </pv:contains>
+                an
+                <f:if condition="{job.contact.uid} == 6">
+                    <f:then>
+                        <f:link.email email="bewerbung@asap-ts.de?subject=Anfrage|Kennziffer:{job.reference}">bewerbung@<span style="DISPLAY: none">no-spam-please</span>asap-ts.de</f:link.email>
+                    </f:then>
+                    <f:else>
+                        <f:link.email email="bewerbung@asap-com.eu?subject=Anfrage|Kennziffer:{job.reference}">bewerbung@<span style="DISPLAY: none">no-spam-please</span>asap-com.eu</f:link.email>
+                    </f:else>
+                </f:if>
+                <br><br>
+                Bei Fragen zu dieser Position wenden Sie sich bitte an {job.contact.name} unter {job.contact.phone}.
+			</p>
+		</div>
+
+        <div class="job-privacy-policies">
+            <p>Bitte beachten Sie unsere Information zur Verwendung persönlicher Daten im Bewerbungsverfahren:<br />
+                http://www.asap-com.eu/datenschutz-bewerbung.html
+            </p>
+        </div>
+
+	</div>
+	
+</f:section>

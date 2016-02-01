@@ -1,0 +1,9 @@
+plugin.tx_webkitpdf_pi1.pdfLink {
+
+  # cat=plugin.tx_webkitpdf_pi1/links/1; type=int+; label=pluginPid: Page id of the page with the webkitpdf plugin. This parameter is mandatory!
+  pluginPid = 12345
+
+  # cat=plugin.tx_webkitpdf_pi1/links/2; type=string; label=linkText: PDF link text.
+  linkText = Save as PDF
+
+}
